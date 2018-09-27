@@ -102,12 +102,63 @@ void insetionSort(T arr[], int n) {
 template<typename T>
 void shellSort(T arr[], int n) {
     
+	T aux[r-l+1];
+	for (int i = l; i <= r; i++)
+	{
+		aux[i - l] = arr[i];
+	}
+	int i = l;
+	int j = mid + 1;
+	for (int k = l; k <= r; k++)
+	{
+		if (i > mid)
+		{
+			arr[k] = aux[j - l];
+			j++;
+		}
+		else if (j > r)
+		{
+			arr[k] = aux[i - l];
+			i++;
+		} 
+		else if (aux[i-l] < aux[j-l]) {
+			arr[k] = aux[i - l];
+			i++;
+		}
+		else {
+			arr[k] = aux[j - l];
+			j++;
+		}
+	}
+}
+
+// 将 arr[l...mid] 和 arr[mid...r] 两部分进行归并
+template<typename T>
+void __merge(T arr[], int l, int r) {
+	
+}
+
+// 递归使用归并排序，对 arr[l...r] 的范围进行排序
+template<typename T>
+void __mergeSort(T arr[], int l, int r) {
+
+	if (l >= r)
+	{
+		return;
+	}
+
+	int mid = (l + r) / 2;	// 这里有一个问题，当 l 和 r 都比较大的时候，两者相加可能会溢出
+
+	__mergeSort(arr, l, mid);
+	__mergeSort(arr, mid, r);
+	__merge(arr, l, mid, r);
 }
 
 // 归并排序，时间复杂度 O(n^logn)，需要额外的空间，空间复杂度提升。
 template<typename T>
 void mergeSort(T arr[], int n) {
     
+	__mergeSort(arr, 0, n - 1);
 }
 
 void sortA() {
@@ -157,7 +208,7 @@ void sortStudent() {
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << " - Hello World!\n";
     
     /*sortA();
      
@@ -167,15 +218,17 @@ int main()
      
      sortStudent();*/
     
-    int n = 10000;
+    int n = 50000;
     int *arr = SortTestHelper::generateRandomArray(n, 0, n);
     // int *arr = SortTestHelper::generateNearlyOrderedArray(n, 100);
     int *arr2 = SortTestHelper::copyIntArray(arr, n);
     int *arr3 = SortTestHelper::copyIntArray(arr, n);
+	int *arr4 = SortTestHelper::copyIntArray(arr, n);
     
     SortTestHelper::testSort("Selection Sort", selectionSort, arr, n);
     SortTestHelper::testSort("Insetion Sort", insetionSort, arr2, n);
     SortTestHelper::testSort("Bubble Sort", bubbleSort, arr3, n);
+	SortTestHelper::testSort("Merge Sort", mergeSort, arr4, n);
     
     delete[] arr;
     delete[] arr2;
