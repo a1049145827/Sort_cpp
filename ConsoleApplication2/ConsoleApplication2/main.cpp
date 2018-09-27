@@ -6,6 +6,7 @@
 //  Copyright © 2018 qianbao. All rights reserved.
 //
 
+#include "pch.h"
 #include <iostream>
 #include "Student.h"
 #include "SortTestHelper.h"
@@ -102,7 +103,14 @@ void insetionSort(T arr[], int n) {
 template<typename T>
 void shellSort(T arr[], int n) {
     
-	T aux[r-l+1];
+}
+
+// 将 arr[l...mid] 和 arr[mid...r] 两部分进行归并
+template<typename T>
+void __merge(T arr[], int l, int mid, int r) {
+
+	const int c = r - l + 1;
+	T aux[c];
 	for (int i = l; i <= r; i++)
 	{
 		aux[i - l] = arr[i];
@@ -120,8 +128,8 @@ void shellSort(T arr[], int n) {
 		{
 			arr[k] = aux[i - l];
 			i++;
-		} 
-		else if (aux[i-l] < aux[j-l]) {
+		}
+		else if (aux[i - l] < aux[j - l]) {
 			arr[k] = aux[i - l];
 			i++;
 		}
@@ -130,12 +138,6 @@ void shellSort(T arr[], int n) {
 			j++;
 		}
 	}
-}
-
-// 将 arr[l...mid] 和 arr[mid...r] 两部分进行归并
-template<typename T>
-void __merge(T arr[], int l, int r) {
-	
 }
 
 // 递归使用归并排序，对 arr[l...r] 的范围进行排序
@@ -174,7 +176,7 @@ void sortA() {
 
 void sortB() {
     
-    float b[4] = { 4.4, 3.3, 2.2, 1.1 };
+    double b[4] = { 4.4, 3.3, 2.2, 1.1 };
     selectionSort(b, 4);
     for (int i = 0; i < 4; i++)
     {
