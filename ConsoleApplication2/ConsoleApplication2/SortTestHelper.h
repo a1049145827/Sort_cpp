@@ -15,7 +15,7 @@ namespace SortTestHelper {
 		int *arr = new int[n];
 		srand(time(NULL));
 
-		for (size_t i = 0; i < n; i++)
+		for (int i = 0; i < n; i++)
 		{
 			arr[i] = rand() % (rangeR - rangeL + 1) + rangeL;
 		}
@@ -26,12 +26,12 @@ namespace SortTestHelper {
 	int* generateNearlyOrderedArray(int n, int swapTimes) {
 		
 		int* arr = new int[n];
-		for (size_t i = 0; i < n; i++)
+		for (int i = 0; i < n; i++)
 		{
 			arr[i] = i;
 		}
 		srand(time(NULL));
-		for (size_t i = 0; i < swapTimes; i++)
+		for (int i = 0; i < swapTimes; i++)
 		{
 			int posx = rand() % n;
 			int posy = rand() % n;
@@ -43,7 +43,7 @@ namespace SortTestHelper {
 	template<typename T>
 	void printArray(T arr[], int n) {
 
-		for (size_t i = 0; i < n; i++)
+		for (int i = 0; i < n; i++)
 		{
 			cout << arr[i] << " ";
 		}
@@ -53,7 +53,7 @@ namespace SortTestHelper {
 	template<typename T>
 	bool isSorted(T arr[], int n) {
 
-		for (size_t i = 0; i < n-1; i++)
+		for (int i = 0; i < n-1; i++)
 		{
 			if (arr[i] > arr[i + 1]) {
 				cout << i << " " << arr[i] << " " << arr[i + 1] << endl;
