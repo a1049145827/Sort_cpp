@@ -109,8 +109,12 @@ void shellSort(T arr[], int n) {
 template<typename T>
 void __merge(T arr[], int l, int mid, int r) {
 
-	const int c = r - l + 1;
+	int c = r - l + 1;
+#if defined(_MSC_VER)
 	T *aux = new T[c];
+#else
+	T aux[c];
+#endif
 	for (int i = l; i <= r; i++)
 	{
 		aux[i - l] = arr[i];
@@ -138,7 +142,9 @@ void __merge(T arr[], int l, int mid, int r) {
 			j++;
 		}
 	}
+#if defined(_MSC_VER)
 	delete[] aux;
+#endif
 }
 
 // 递归使用归并排序，对 arr[l...r] 的范围进行排序
