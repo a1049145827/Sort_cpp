@@ -110,7 +110,7 @@ template<typename T>
 void __merge(T arr[], int l, int mid, int r) {
 
 	const int c = r - l + 1;
-	T aux[c];
+	T *aux = new T[c];
 	for (int i = l; i <= r; i++)
 	{
 		aux[i - l] = arr[i];
@@ -138,6 +138,7 @@ void __merge(T arr[], int l, int mid, int r) {
 			j++;
 		}
 	}
+	delete[] aux;
 }
 
 // 递归使用归并排序，对 arr[l...r] 的范围进行排序
@@ -152,7 +153,7 @@ void __mergeSort(T arr[], int l, int r) {
 	int mid = (l + r) / 2;	// 这里有一个问题，当 l 和 r 都比较大的时候，两者相加可能会溢出
 
 	__mergeSort(arr, l, mid);
-	__mergeSort(arr, mid, r);
+	__mergeSort(arr, mid+1, r);
 	__merge(arr, l, mid, r);
 }
 
@@ -234,7 +235,10 @@ int main()
     
     delete[] arr;
     delete[] arr2;
-    delete[] arr3;
-    
+    delete[] arr3;    
+	delete[] arr4;
+
+	std::cout << " - The End!\n";
+
     return 0;
 }
