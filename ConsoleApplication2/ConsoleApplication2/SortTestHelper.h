@@ -56,7 +56,7 @@ namespace SortTestHelper {
 		for (int i = 0; i < n-1; i++)
 		{
 			if (arr[i] > arr[i + 1]) {
-				cout << i << " " << arr[i] << " " << arr[i + 1] << endl;
+				cout << "The " << i << " Element: " << arr[i] << ", Next: " << arr[i + 1] << endl;
 				return false;
 			}
 		}

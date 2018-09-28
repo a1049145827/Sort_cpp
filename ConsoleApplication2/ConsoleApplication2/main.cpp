@@ -77,14 +77,12 @@ void selectionSort(T arr[], int n) {
 // 插入排序 时间复杂度比 O(n^2) 低一些，每次for循环可以提前终止，并且赋值语句代替了交换函数，所以效率会高。对近乎有序的数组，效率会更高。
 template<typename T>
 void insetionSort(T arr[], int n) {
-    if (n < 2) {
-        return;
-    }
+    
     // 首次实现，swap函数时间复杂度大一些，所以性能不一定比选择排序高
     /*for (int i = 1; i < n; i ++)
      {
      for (int j = i; j > 0 && (arr[j] < arr[j - 1]); j--) {
-     swap(arr[j], arr[j - 1]);
+		swap(arr[j], arr[j - 1]);
      }
      }*/
     
@@ -98,6 +96,23 @@ void insetionSort(T arr[], int n) {
         }
         arr[j] = e;
     }
+}
+
+// 插入排序，用于和归并排序搭配使用
+template<typename T>
+void insertionSort(T arr[], int l, int r) {
+	
+	for (int i = l+1; i <= r; i++)
+	{
+		T e = arr[i];
+		int j;
+		for (j = i; j > l && arr[j - 1] > e; j--)
+		{
+			arr[j] = arr[j - 1];
+		}
+		arr[j] = e;
+	}
+	return;
 }
 
 // 希尔排序，插入排序的衍变
@@ -152,8 +167,13 @@ void __merge(T arr[], int l, int mid, int r) {
 template<typename T>
 void __mergeSort(T arr[], int l, int r) {
 
-	if (l >= r)
+	/*if (l >= r)
 	{
+		return;
+	}*/
+	if (r - l < 100)
+	{
+		insertionSort(arr, l, r);
 		return;
 	}
 
@@ -234,20 +254,29 @@ int main()
      sortStudent();*/
     
     int n = 50000;
-	// int *arr = SortTestHelper::generateRandomArray(n, 0, n);
-    int *arr = SortTestHelper::generateNearlyOrderedArray(n, 100);
+	int *arr = SortTestHelper::generateRandomArray(n, 0, n);
+    //int *arr = SortTestHelper::generateNearlyOrderedArray(n, 100);
     int *arr2 = SortTestHelper::copyIntArray(arr, n);
-    int *arr3 = SortTestHelper::copyIntArray(arr, n);
+    //int *arr3 = SortTestHelper::copyIntArray(arr, n);
 	int *arr4 = SortTestHelper::copyIntArray(arr, n);
     
-    SortTestHelper::testSort("Selection Sort", selectionSort, arr, n);
-    SortTestHelper::testSort("Insetion Sort", insetionSort, arr2, n);
-    SortTestHelper::testSort("Bubble Sort", bubbleSort, arr3, n);
+    //SortTestHelper::testSort("Selection Sort", selectionSort, arr, n);
+    //SortTestHelper::testSort("Insertion Sort", insetionSort, arr2, n);
+    //SortTestHelper::testSort("Bubble Sort", bubbleSort, arr3, n);
 	SortTestHelper::testSort("Merge Sort", mergeSort, arr4, n);
     
+	/*insertionSort(arr, 0, n - 1);
+	if (SortTestHelper::isSorted(arr, n - 1))
+	{
+		cout << "Success !" << endl;
+	}
+	else {
+		cout << "Failed !" << endl;
+	}*/
+
     delete[] arr;
     delete[] arr2;
-    delete[] arr3;    
+    //delete[] arr3;    
 	delete[] arr4;
 
 	std::cout << " - The End!\n";
