@@ -163,7 +163,12 @@ void __mergeSort(T arr[], int l, int r) {
 
 	__mergeSort(arr, l, mid);
 	__mergeSort(arr, mid+1, r);
-	__merge(arr, l, mid, r);
+
+	// 归并排序优化，已排好顺序的就不需要合并。此方法对于本来就比较有序的数组进一步提升性能。
+	if (arr[mid] > arr[mid+1])
+	{
+		__merge(arr, l, mid, r);
+	}
 }
 
 // 归并排序，时间复杂度 O(n^logn)，需要额外的空间，空间复杂度提升。
