@@ -6,9 +6,7 @@
 //  Copyright © 2018 qianbao. All rights reserved.
 //
 
-#if defined(_MSC_VER)
 #include "pch.h"
-#endif
 
 #include <iostream>
 #include "Student.h"
@@ -236,8 +234,8 @@ int main()
      sortStudent();*/
     
     int n = 50000;
-    int *arr = SortTestHelper::generateRandomArray(n, 0, n);
-    // int *arr = SortTestHelper::generateNearlyOrderedArray(n, 100);
+	// int *arr = SortTestHelper::generateRandomArray(n, 0, n);
+    int *arr = SortTestHelper::generateNearlyOrderedArray(n, 100);
     int *arr2 = SortTestHelper::copyIntArray(arr, n);
     int *arr3 = SortTestHelper::copyIntArray(arr, n);
 	int *arr4 = SortTestHelper::copyIntArray(arr, n);
