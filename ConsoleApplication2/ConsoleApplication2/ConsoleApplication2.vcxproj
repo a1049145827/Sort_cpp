@@ -154,6 +154,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="SortTestHelper.h" />
+    <ClInclude Include="MergeSort.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
