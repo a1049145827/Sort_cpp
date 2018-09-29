@@ -122,23 +122,22 @@ int __quick(T arr[], int l, int r) {
 
 	T v = arr[l];
 	int j = l;
-	for (int i = l + 1; i < r; i++)
+	for (int i = l + 1; i <= r; i++)
 	{
 		if (arr[i] < v) {
-			swap(arr[j + 1], arr[j]);
+			swap(arr[j + 1], arr[i]);
 			j++;
 		}
 	}
 	swap(arr[l], arr[j]);
-
+    
 	return j;
 }
 
 template<typename T>
 void __quickSort(T arr[], int l, int r) {
 
-	if (l >= r)
-	{
+	if (l >= r) {
 		return;
 	}
 
@@ -211,18 +210,18 @@ int main()
      
      sortStudent();*/
     
-    int n = 50000;
+    int n = 500000;
 	int *arr = SortTestHelper::generateRandomArray(n, 0, n);
     //int *arr = SortTestHelper::generateNearlyOrderedArray(n, 100);
-    int *arr2 = SortTestHelper::copyIntArray(arr, n);
+//    int *arr2 = SortTestHelper::copyIntArray(arr, n);
     //int *arr3 = SortTestHelper::copyIntArray(arr, n);
-	int *arr4 = SortTestHelper::copyIntArray(arr, n);
+    int *arr4 = SortTestHelper::copyIntArray(arr, n);
 	int *arr5 = SortTestHelper::copyIntArray(arr, n);
     
     //SortTestHelper::testSort("Selection Sort", selectionSort, arr, n);
-    SortTestHelper::testSort("Insertion Sort", insetionSort, arr2, n);
+//    SortTestHelper::testSort("Insertion Sort", insetionSort, arr2, n);
     //SortTestHelper::testSort("Bubble Sort", bubbleSort, arr3, n);
-	SortTestHelper::testSort("Merge Sort", mergeSort, arr4, n);
+    SortTestHelper::testSort("Merge Sort", mergeSort, arr4, n);
 	SortTestHelper::testSort("Quick Sort", quickSort, arr5, n);
     
 	/*insertionSort(arr, 0, n - 1);
@@ -235,9 +234,9 @@ int main()
 	}*/
 
     delete[] arr;
-    delete[] arr2;
+//    delete[] arr2;
     //delete[] arr3;
-	delete[] arr4;
+    delete[] arr4;
 	delete[] arr5;
 
 	std::cout << " - The End!\n";
